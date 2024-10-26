@@ -1,0 +1,9 @@
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE posts(
+    postid INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    title VARCHAR(40) NOT NULL,
+    text VARCHAR(4096) NOT NULL, 
+    filename VARCHAR(64),
+    created DATETIME DEFAULT CURRENT_TIMESTAMP
+);

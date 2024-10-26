@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>戴RY (๑˃̵ᴗ˂̵)و</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/gary.webp') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- for mobile users -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header id="site_header">
+      <h1>dai <sub>li</sub></h1>
+      <nav>
+        <span>
+          <a href="/" class="active">home</a>
+        </span>
+        <span>|</span>
+        <span>
+          <a href="/art/">art</a>
+        </span>
+        <span>|</span>
+        <span>
+          <a href="/diary/">diary</a>
+        </span>
+        <span>|</span>
+        <span class="align-right"><a href="/new-post/">new post</a></span>
+      </nav>
+    </header>
+    <div id="content">
+      <p>
+        <hr>
+        <h2>diary!!</h2>
+        <hr>
+        <div id="posts">
+            {% for post in posts %}
+                <h3>{{ post.title }}</h3>
+                <p>Posted on: {{ post.created }}</p>
+                <p>{{ post.text }}</p>
+                <hr>
+            {% endfor %}
+        </div>
+      </p>
+    </div>
+  </body>
+</html>

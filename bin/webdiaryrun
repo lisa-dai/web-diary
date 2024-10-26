@@ -1,0 +1,17 @@
+#!/bin/bash
+# webdiaryrun
+
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+
+set -Eeuo pipefail
+set -x
+
+# If var/webdiary.sqlite3 does not exist, print an error and exit non-zero.
+if test -f "var/webdiary.sqlite3"; then
+    # Run the development server on port 8000.
+    flask --app webdiary --debug run --host 0.0.0.0 --port 8000
+else
+    echo "Error: can't find database var/webdiary.sqlite3"
+    exit 1
+fi

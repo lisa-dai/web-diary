@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>戴RY (๑˃̵ᴗ˂̵)و</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/gary.webp') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- for mobile users -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header id="site_header">
+      <h1>dai <sub>li</sub></h1>
+      <nav>
+        <span>
+          <a href="/" class="active">home</a>
+        </span>
+        <span>|</span>
+        <span>
+          <a href="/art/">art</a>
+        </span>
+        <span>|</span>
+        <span>
+          <a href="/diary/">diary</a>
+        </span>
+        <span>|</span>
+        <span class="align-right"><a href="/new-post/">new post</a></span>
+      </nav>
+        <div id="content">
+            <p>
+            <hr>
+            <form action="/submit/" method="post">
+                <label for="title">Title: </label><br>
+                <input type="text" id="title" name="title" size="40"><br>
+                <label for="text">Post Text: </label><br>
+                <input type="text" id="text" name="text" size="4096"> <br>
+                <input type="submit" value="Submit">
+            </form>
+            </p>
+        </div>
+
+  </body>
+</html>

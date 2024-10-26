@@ -1,0 +1,11 @@
+html {
+    background-color: #ffffff;
+    color: #000000
+}
+#site_header nav {
+    display: flex;
+}
+.align-right {
+    /* pushes to the far right */
+    margin-left: auto; 
+}
