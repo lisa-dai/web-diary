@@ -24,18 +24,24 @@
           <a href="/diary/">diary</a>
         </span>
         <span>|</span>
-        <span class="align-right"><a href="/new-post/">new post</a></span>
+        <span class="align-right"><a href="/new-post/">new diary post</a></span>
       </nav>
-        <div id="content">
+        <div id="postform">
             <p>
             <hr>
             <form action="/submit/" method="post">
-                <label for="title">Title: </label><br>
-                <input type="text" id="title" name="title" size="40"><br>
-                <label for="text">Post Text: </label><br>
-                <input type="text" id="text" name="text" size="4096"> <br>
+                <label for="title">entry title: </label><br>
+                <input type="text" id="title" name="title" size="50"><br>
+                <label for="text">entry text: </label><br>
+                <textarea id="text" name="text" rows="7" cols="75"></textarea> <br>
                 <input type="submit" value="Submit">
             </form>
+            <script>
+              document.querySelector('textarea').addEventListener("input", function(){
+              this.style.height = '105px';
+              this.style.height = this.scrollHeight + 'px';
+              });
+            </script>
             </p>
         </div>
 
