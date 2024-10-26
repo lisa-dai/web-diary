@@ -1,17 +1,31 @@
 html {
     background-image: url("images/phobia.jpg");
     color: #ffffff;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 150px;
+    margin-right: 150px;
+    cursor: url("images/skull-cursor.png"), auto;
 }
 
 body {
-    margin-left: 50px;
-    margin-right: 50px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px; /* Adds space inside the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
+    margin: auto; /* Center it horizontally */
 }
+
+body a {
+    color: red;
+}
+
+#site_header h1 {
+    font-size: 300%
+}
+
 #site_header nav {
     display: flex;
 }
+
 .align-right {
     /* pushes to the far right */
     margin-left: auto; 

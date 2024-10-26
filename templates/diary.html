@@ -10,7 +10,7 @@
   </head>
   <body>
     <header id="site_header">
-      <h1>dai <sub>li</sub></h1>
+      <h1>diary <sub>!!</sub></h1>
       <nav>
         <span>
           <a href="/" class="active">home</a>
@@ -27,20 +27,20 @@
         <span class="align-right"><a href="/new-post/">new diary post</a></span>
       </nav>
     </header>
-    <div id="diarycontent">
-      <p>
-        <hr>
-        <h2>diary!!</h2>
-        <hr>
-        <div id="posts">
-            {% for post in posts %}
-                <h3>{{ post.title }}</h3>
-                <p>Posted on: {{ post.created }}</p>
-                <p>{{ post.text }}</p>
-                <hr>
-            {% endfor %}
-        </div>
-      </p>
+    <div class="content"></div>
+      <div id="diary">
+        <p>
+          <hr>
+          <div id="posts">
+              {% for post in posts %}
+                  <h3>{{ post.title }}</h3>
+                  <p>Posted on: {{ post.created }}</p>
+                  <p>{{ post.text }}</p>
+                  <hr>
+              {% endfor %}
+          </div>
+        </p>
+      </div>
     </div>
   </body>
 </html>

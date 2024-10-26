@@ -26,6 +26,7 @@
         <span>|</span>
         <span class="align-right"><a href="/new-post/">new diary post</a></span>
       </nav>
+      <div id="content">
         <div id="postform">
             <p>
             <hr>
@@ -36,14 +37,15 @@
                 <textarea id="text" name="text" rows="7" cols="75"></textarea> <br>
                 <input type="submit" value="Submit">
             </form>
+            </p>
+
             <script>
               document.querySelector('textarea').addEventListener("input", function(){
               this.style.height = '105px';
               this.style.height = this.scrollHeight + 'px';
               });
             </script>
-            </p>
         </div>
-
+        </div>
   </body>
 </html>
