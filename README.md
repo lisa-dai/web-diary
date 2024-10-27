@@ -6,4 +6,5 @@ password-protect some pages,
 create /art/ and differentiate art posts from diary posts,
 add lots of CSS/styling stuff,
 create custom cursor animation,
-make so only 5 diary entries show at a time
+make so only 5 diary entries show at a time,
+add music player and currently feeling: on index
