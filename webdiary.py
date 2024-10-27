@@ -5,7 +5,7 @@ URLs include:
 /diary/
 """
 import sqlite3
-from datetime import datetime, timedelta
+from datetime import datetime
 import flask
 from flask import Flask, render_template
 
@@ -25,7 +25,7 @@ def handle_posts():
 
     title = flask.request.form['title']
     text = flask.request.form['text']
-    created = datetime.now().replace(microsecond=0) - timedelta(hours=4)
+    created = datetime.now().replace(microsecond=0)
 
     if not text:
         flask.abort(400)  # ERROR: text is empty
