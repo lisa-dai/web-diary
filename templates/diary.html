@@ -34,8 +34,13 @@
           <div id="posts">
               {% for post in posts %}
                   <span class="posttitle">{{ post.title }} </span>
-                  <span class="buttons"><input type="button" value="edit"> <input type="button" value="delete"></span>
-                  <p>Posted on: {{ post.created }} </p>
+                  <span class="buttons">
+                    <form action="/diarydelete/" method="post">
+                      <input type="submit" value="delete">
+                      <input type="hidden" name="postid" value="{{ post.postid }}">
+                    </form>
+                  </span>
+                  <p>{{ post.created }} </p>
                   <p>{{ post.text }}</p>
                   <hr>
               {% endfor %}

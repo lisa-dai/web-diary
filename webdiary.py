@@ -5,6 +5,7 @@ URLs include:
 /diary/
 """
 import sqlite3
+from datetime import datetime, timedelta
 import flask
 from flask import Flask, render_template
 
@@ -24,14 +25,15 @@ def handle_posts():
 
     title = flask.request.form['title']
     text = flask.request.form['text']
+    created = datetime.now().replace(microsecond=0) - timedelta(hours=4)
 
     if not text:
         flask.abort(400)  # ERROR: text is empty
     else:
         # insert a new comment
-        conn.execute("INSERT INTO posts (title, text)"
-                    " VALUES (?, ?)",
-                    (title, text))
+        conn.execute("INSERT INTO posts (title, text, created)"
+                    " VALUES (?, ?, ?)",
+                    (title, text, created))
         # need to commit changes after executing SQL command
         conn.commit()
     return flask.redirect('/diary/')
@@ -46,6 +48,19 @@ def diary():
     posts = conn.execute('SELECT * FROM posts ORDER BY created DESC').fetchall()
     conn.close()
     return render_template('diary.html', posts=posts)
+
+@app.route('/diarydelete/', methods=['POST'])
+def diarydelete():
+    """Delete Diary Entry."""
+
+    conn = sqlite3.connect('var/webdiary.sqlite3')
+    conn.row_factory = sqlite3.Row
+
+    postid = flask.request.form['postid']
+    conn.execute("DELETE FROM posts WHERE postid=?",
+                 (postid,))
+    conn.commit()
+    return flask.redirect('/diary/')
 
 @app.route('/new-post/', methods=['GET'])
 def newpost():

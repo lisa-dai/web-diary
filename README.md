@@ -7,4 +7,5 @@ create /art/ and differentiate art posts from diary posts,
 add lots of CSS/styling stuff,
 add post editing/deleting feature,
 create custom cursor animation,
-update post.created time to be EST
+update post.created time to be EST,
+make so only 5 diary entries show at a time
