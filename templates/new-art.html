@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>戴RY (๑˃̵ᴗ˂̵)و</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/gary.webp') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- for mobile users -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <header id="site_header">
+      <h1>dai <sub>li</sub></h1>
+      <nav>
+        <span>
+          <a href="/" class="active">home</a>
+        </span>
+        <span>|</span>
+        <span>
+          <a href="/art/">art</a>
+        </span>
+        <span>|</span>
+        <span>
+          <a href="/diary/">diary</a>
+        </span>
+        <span>|</span>
+        <div class="align-right">
+            <a href="/new-post/">new diary post</a>
+            <span>|</span>
+            <a href="/new-art/">new art post</a>
+        </div>
+      </nav>
+      <div id="content">
+        <div id="postform">
+            <p>
+            <hr>
+            <form action="/artsubmit/" method="post" enctype="multipart/form-data">
+                <input type="file" id="filename" name="filename" required> <br>
+                <label for="title">entry title: </label><br>
+                <input type="text" id="title" name="title" size="50"><br>
+                <label for="text">entry text: </label><br>
+                <textarea id="text" name="text" rows="7" cols="75"></textarea> <br>
+                <input type="submit" value="submit">
+            </form>
+            </p>
+
+            <script>
+              document.querySelector('textarea').addEventListener("input", function(){
+              this.style.height = '105px';
+              this.style.height = this.scrollHeight + 'px';
+              });
+            </script>
+        </div>
+        </div>
+  </body>
+</html>

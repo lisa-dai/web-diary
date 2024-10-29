@@ -35,13 +35,40 @@ def handle_posts():
     if not text:
         flask.abort(400)  # ERROR: text is empty
     else:
-        # insert a new comment
+        # insert new post
         conn.execute("INSERT INTO posts (title, text, created)"
                     " VALUES (?, ?, ?)",
                     (title, text, created))
         # need to commit changes after executing SQL command
         conn.commit()
     return flask.redirect('/diary/')
+
+@app.route('/artsubmit/', methods=['POST'])
+def handle_art():
+    """Handle Art Posts."""
+
+    # Connect to database
+    conn = sqlite3.connect('var/webdiary.sqlite3')
+
+    title = flask.request.form['title']
+    text = flask.request.form['text']
+    created = datetime.now().replace(microsecond=0)
+
+    # Handle the file upload
+    if 'filename' not in flask.request.files:
+        flask.abort(400)  # ERROR: No file part
+    file = flask.request.files['filename']
+    
+    if file.filename == '':
+        flask.abort(400)  # ERROR: No selected file
+    else:
+        # insert new art
+        conn.execute("INSERT INTO art (filename, title, text, created)"
+                    " VALUES (?, ?, ?)",
+                    (file.filename, title, text, created))
+        # need to commit changes after executing SQL command
+        conn.commit()
+    return flask.redirect('/art/')
 
 @app.route('/diary/', methods=['GET'])
 def diary():
@@ -54,20 +81,25 @@ def diary():
     conn.close()
     return render_template('diary.html', posts=posts)
 
-@app.route('/diarydelete/', methods=['POST'])
-def diarydelete():
-    """Delete Diary Entry."""
+@app.route('/new-post/', methods=['GET'])
+def newpost():
+    """Return New Diary Post."""
+    return flask.render_template('new-post.html')
+
+@app.route('/new-art/', methods=['GET'])
+def newart():
+    """Render New Art Post."""
+    return render_template('new-art.html')
+
+@app.route('/artdelete/', methods=['POST'])
+def artdelete():
+    """Delete Art Entry."""
 
     conn = sqlite3.connect('var/webdiary.sqlite3')
     conn.row_factory = sqlite3.Row
 
-    postid = flask.request.form['postid']
-    conn.execute("DELETE FROM posts WHERE postid=?",
-                 (postid,))
+    artid = flask.request.form['artid']
+    conn.execute("DELETE FROM art WHERE artid=?",
+                 (artid,))
     conn.commit()
-    return flask.redirect('/diary/')
-
-@app.route('/new-post/', methods=['GET'])
-def newpost():
-    """Return New Post."""
-    return flask.render_template('new-post.html')
+    return flask.redirect('/art/')
