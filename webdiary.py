@@ -16,6 +16,11 @@ def index():
     """Return Index."""
     return flask.render_template('index.html')
 
+@app.route('/art/', methods=['GET'])
+def art():
+    """Render Art."""
+    return render_template('art.html')
+
 @app.route('/submit/', methods=['POST'])
 def handle_posts():
     """Handle Diary Posts."""
