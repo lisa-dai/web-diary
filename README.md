@@ -3,10 +3,9 @@ this is lisa dai's (戴丽) web diary!! here i will post art, writings, rambling
 
 todo:
 password-protect some pages,
-create /art/ and differentiate art posts from diary posts,
 add lots of CSS/styling stuff,
-create custom cursor animation, (when holding mouse button down -> skull open and closes mouth)
 make so only 5 diary entries show at a time,
 add music player and currently feeling: on index,
-4 React:
+4 React/js:
 change buttons and themesss
+create custom cursor animation, (when holding mouse button down -> skull open and closes mouth)

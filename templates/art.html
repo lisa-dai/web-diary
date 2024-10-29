@@ -32,17 +32,19 @@
       </nav>
     </header>
     <div class="content"></div>
-      <hr>
+      <hr> <br>
       <div id="posts">
         {% for art in arts %}
-            <span class="arttitle">{{ art.title }} </span>
             <span class="buttons">
               <form action="/artdelete/" method="post">
                 <input type="submit" value="delete">
                 <input type="hidden" name="artid" value="{{ art.artid }}">
               </form>
             </span>
-            <a href="{{ url_for('static', filename=art.filename) }}">{{ art.filename }}</a>
+            <img src="/static/images/{{ art.filename }}"
+            style="max-width:500px;width:100%"
+            class="center"> <br>
+            <p>{{ art.title }} </p>
             <p>{{ art.created }}</p>
             <p>{{ art.text }}</p>
             <hr>

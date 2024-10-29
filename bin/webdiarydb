@@ -28,6 +28,15 @@ case $1 in
     sqlite3 var/webdiary.sqlite3 < sql/data.sql
     cp sql/uploads/* var/uploads
     ;;
+  
+  "update")
+    if ! test -f "var/webdiary.sqlite3"; then
+        echo "Error: database does not exist. Use 'create' first."
+        exit 1
+    fi
+    sqlite3 var/webdiary.sqlite3 < sql/schema.sql
+    sqlite3 var/webdiary.sqlite3 < sql/data.sql
+    ;;
 
   "reset")
     rm -rf var/webdiary.sqlite3 var/uploads
@@ -38,6 +47,7 @@ case $1 in
     ;;
 
     "dump")
+    sqlite3 -batch -line var/webdiary.sqlite3 'SELECT * FROM art'
     sqlite3 -batch -line var/webdiary.sqlite3 'SELECT * FROM posts'
     ;;
   *)
