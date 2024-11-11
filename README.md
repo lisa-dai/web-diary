@@ -9,3 +9,4 @@ add music player and currently feeling: on index,
 4 React/js:
 change buttons and themesss
 create custom cursor animation, (when holding mouse button down -> skull open and closes mouth)
+add calendar with eats,hear,do,watch,reflection
