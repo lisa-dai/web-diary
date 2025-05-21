@@ -13,9 +13,9 @@ html {
 body {
     text-align: center;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 20px; /* Adds space inside the box */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Light shadow */
-    margin: auto; /* Center it horizontally */
+    padding: 20px; /* adds space inside the box */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* light shadow */
+    margin: auto; /* centers it horizontally */
 }
 
 body a {
