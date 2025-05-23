@@ -9,7 +9,7 @@ from datetime import datetime
 import uuid
 import hashlib
 import flask
-from flask import Blueprint, render_template, redirect, url_for, session, request, flash, abort
+from flask import Blueprint, render_template, redirect, url_for, session, request, abort, jsonify
 
 diary_bp = Blueprint('diary_bp', __name__)
 
@@ -49,18 +49,22 @@ def validate():
     # computes the final SHA-512 hash of the salted password, returns as hexadecimal str
     input_hash = hash_obj.hexdigest()
 
+    # correct pwd
     if input_hash == stored_hash:
         session['authenticated'] = True
-        return redirect(url_for('diary_bp.diary'))
+
+    # incorrect pwd
     else:
-        return render_template('diary.html', posts=None, authenticated=False, alert='stop trying to read my diary >:(')
+        if request.form['url'] == '/diary/':
+            return render_template('diary.html', posts=None, authenticated=False, alert='stop trying to read my diary >:(')
     
+    return redirect(request.form['url'])
 
 @diary_bp.route('/submit/', methods=['POST'])
 def handle_posts():
     """Handle Diary Post Submits."""
 
-    # Connect to database
+    # connect to database
     conn = sqlite3.connect('var/webdiary.sqlite3')
 
     title = request.form['title']
@@ -81,7 +85,27 @@ def handle_posts():
 @diary_bp.route('/new-post/', methods=['GET'])
 def newpost():
     """Return New Diary Post Form."""
-    return render_template('new-post.html')
+    if "authenticated" not in session:
+        return render_template('new-post.html', authenticated=False)
+    return render_template('new-post.html', authenticated=True)
+
+'''@diary_bp.route('api/diary/<postid>', methods=['PATCH'])
+def diaryedit(postid):
+    """Edit Diary Entry."""
+    if "authenticated" not in session:
+        return render_template('diary.html', posts=None, authenticated=False)
+    data = request.get_json()
+    title = data.get('title')
+    text = data.get('text')
+
+    conn = sqlite3.connect('var/webdiary.sqlite3')
+    conn.row_factory = sqlite3.Row
+
+    conn.execute("UPDATE posts SET title=?, text=? WHERE postid=?",
+                 (title, text, postid,))
+    conn.commit()
+    return flask.jsonify()'''
+
 
 @diary_bp.route('/diarydelete/', methods=['POST'])
 def diarydelete():

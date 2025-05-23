@@ -34,6 +34,20 @@
         <div id="postform">
             <p>
             <hr>
+            {% if not authenticated %}
+            <form action="/validatepwd/" method="post">
+              <input type="password" name="pass" placeholder="Enter Password" required>
+              <input type="hidden" name="url" value="/new-post/">
+            </form>
+            {% if alert %}
+              <script>
+              window.onload = function(){
+                alert({{alert|tojson}});
+              }
+              </script>
+            {% endif %}
+          {% endif %}
+          {% if authenticated %}
             <form action="/submit/" method="post">
                 <label for="title">entry title: </label><br>
                 <input type="text" id="title" name="title" size="50"><br>
@@ -49,6 +63,7 @@
               this.style.height = this.scrollHeight + 'px';
               });
             </script>
+          {% endif %}
         </div>
         </div>
   </body>
