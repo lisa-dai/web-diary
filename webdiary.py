@@ -37,7 +37,7 @@ def validate():
     """Validate Password to View Diary Posts."""
 
     # algorithm$salt$hash
-    stored_pwd = 'sha512$210b91ab17c1490b8d66858497df60c0$1a9d624a7cf1ed3554969dd68c987e14d7fb790ddbe4c331aa032486fc0264487335f7ea942ed15bf5ec69e119f491be67fc41973f2bb3fc737b29092d22aee4'
+    stored_pwd = 'sha512$f1377682ae5143b6b567e6cdc4b0ed97$8ac51227a5722363f367ebdb83d16a822d69d6d57cdbf6e428667707f59a5ced4f2c1127eb3715dd015fc5a1339ede371ce884708a396d16b56acb26e5047aa0'
     algorithm, salt, stored_hash = stored_pwd.split('$')
 
     input_pwd = request.form['pass']
@@ -89,23 +89,20 @@ def newpost():
         return render_template('new-post.html', authenticated=False)
     return render_template('new-post.html', authenticated=True)
 
-'''@diary_bp.route('api/diary/<postid>', methods=['PATCH'])
+@diary_bp.route('/api/diary/<postid>', methods=['PATCH'])
 def diaryedit(postid):
     """Edit Diary Entry."""
-    if "authenticated" not in session:
-        return render_template('diary.html', posts=None, authenticated=False)
     data = request.get_json()
     title = data.get('title')
     text = data.get('text')
 
     conn = sqlite3.connect('var/webdiary.sqlite3')
-    conn.row_factory = sqlite3.Row
 
     conn.execute("UPDATE posts SET title=?, text=? WHERE postid=?",
                  (title, text, postid,))
     conn.commit()
-    return flask.jsonify()'''
-
+    
+    return jsonify()
 
 @diary_bp.route('/diarydelete/', methods=['POST'])
 def diarydelete():

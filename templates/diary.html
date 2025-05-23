@@ -57,10 +57,7 @@
                       <input type="submit" value="delete">
                       <input type="hidden" name="postid" value="{{ post.postid }}">
                     </form>
-                    <form action="/diaryedit/" method="post">
-                      <input type="submit" value="edit">
-                      <input type="hidden" name="postid" value="{{ post.postid }}">
-                    </form>
+
                   </span>
                   <p>{{ post.created }} </p>
                   <p>{{ post.text }}</p>
