@@ -35,12 +35,13 @@
       <div id="diary">
         <p>
           <hr>
-          <form id="pwd">
-            <input type="password" id="validate" 
-                    placeholder="Enter Password">
-            <button type="button" onclick="passwordprotect()">Submit</button>
-          </form>
-          <div id="posts" style="display: none;">
+          {% if not authenticated %}
+            <form action="/validatepwd/" method="post">
+              <input type="password" name="pass" placeholder="Enter Password" required>
+            </form>
+          {% endif %}
+          {% if authenticated %}
+            <div id="posts">
               {% for post in posts %}
                   <span class="posttitle">{{ post.title }} </span>
                   <span class="buttons">
@@ -53,27 +54,8 @@
                   <p>{{ post.text }}</p>
                   <hr>
               {% endfor %}
-          </div>
-          <script>
-            function passwordprotect() {
-              let input_pwd = document.getElementById("validate").value;
-              let correct_pwd = "iluvclover";
-              if (input_pwd === correct_pwd) {
-                  document.getElementById("posts").style.display = "block";
-                  document.getElementById("pwd").style.display = "none";
-              }
-              else {
-                  alert("Incorrect password!");
-              }
-            }
-
-            document.getElementById("validate").addEventListener("keypress", function(event) {
-              if (event.key === "Enter") {
-                event.preventDefault();  // Prevent the default form submission
-                passwordprotect();  // Trigger the password validation
-              }
-            });
-          </script>
+            </div>
+          {% endif %}
         </p>
       </div>
     </div>
