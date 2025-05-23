@@ -36,6 +36,7 @@ def diary():
 def validate():
     """Validate Password to View Diary Posts."""
 
+    # algorithm$salt$hash
     stored_pwd = 'sha512$210b91ab17c1490b8d66858497df60c0$1a9d624a7cf1ed3554969dd68c987e14d7fb790ddbe4c331aa032486fc0264487335f7ea942ed15bf5ec69e119f491be67fc41973f2bb3fc737b29092d22aee4'
     algorithm, salt, stored_hash = stored_pwd.split('$')
 
@@ -52,8 +53,7 @@ def validate():
         session['authenticated'] = True
         return redirect(url_for('diary_bp.diary'))
     else:
-        flash('Incorrect Password')
-        return redirect(url_for('diary_bp.diary'))
+        return render_template('diary.html', posts=None, authenticated=False, alert='stop trying to read my diary >:(')
     
 
 @diary_bp.route('/submit/', methods=['POST'])
