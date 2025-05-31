@@ -10,4 +10,6 @@ add lots of CSS/styling stuff,
 4 React/js:
 change buttons and themesss
 create custom cursor animation, (when holding mouse button down -> skull open and closes mouth)
+mood tracker: add emojis or sliders to log mood with each entry
+sketch pad: add small sketchpad using HTML5 Canvas or Fabric.js for visual journaling
 
