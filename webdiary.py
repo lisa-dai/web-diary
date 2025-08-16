@@ -11,7 +11,7 @@ import hashlib
 import flask
 from flask import Blueprint, render_template, redirect, url_for, session, request, abort, jsonify
 
-diary_bp = Blueprint('diary_bp', __name__)
+diary_bp = Blueprint('diary_bp', __name__) # test
 
 @diary_bp.route('/', methods=['GET'])
 def index():
