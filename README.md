@@ -1,6 +1,8 @@
 this is lisa dai's (戴丽) web diary!! here i will post art, writings, ramblings and etc....
 这是戴丽的网络日记！！在这里我会发布艺术、著作、随笔等等......
 
+Instructions for Running Locally: ./bin/webdiaryrun
+
 todo:
 make so only 5-10(?) diary entries show at a time,
 add filter so you can see/sort entries from certain time-frames
